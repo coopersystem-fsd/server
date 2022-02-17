@@ -9,6 +9,7 @@
     <appender-ref ref="console" />
   </appender>
 
+  <logger name="com.rideaustin" level="DEBUG"/>
   <root level="info">
     <appender-ref ref="async.default"/>
     <logger name="com.google.maps" level="off"/>

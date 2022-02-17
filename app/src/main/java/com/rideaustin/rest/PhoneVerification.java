@@ -56,7 +56,7 @@ public class PhoneVerification {
     @ApiParam(value = "Code received in SMS", required = true) @RequestParam String code
   ) throws BadRequestException {
     Boolean verified = phoneVerificationService.verify(authToken, code);
-    if (verified) {
+    if (!verified) {
       throw new BadRequestException("SMS verification failed");
     }
   }

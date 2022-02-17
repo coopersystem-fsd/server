@@ -37,7 +37,7 @@ docker run --name mysql-4-test \
 -e MYSQL_DATABASE=ride_db \
 -e MYSQL_USER=test \
 -e MYSQL_PASSWORD=test123 \
--p 3307:3306 -d mysql --lower_case_table_names=1
+-p 3307:3306 -d mysql:5.7 --lower_case_table_names=1
 ```
 
 docker container for redis
@@ -49,4 +49,4 @@ docker run --name redis-4-test -p 6378:6379 -d redis
 
 * [logback.xml](app/src/main/resources/logback.xml) - default Spring logger
 * [logback-custom.xml](app/src/main/resources/logback-custom.xml) - Spring logger that is using on the `aws`
-* [logging.properies](.ebextensions/files/logging.properties) - Tomcat JULI logger that is using on the `aws
+* [logging.properies](.ebextensions/files/logging.properties) - Tomcat JULI logger that is using on the `aws`

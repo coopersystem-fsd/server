@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  db_mysql:
+    image: mysql:5.7
+    restart: always
+    container_name: ride-mysql-db
+    command: --lower_case_table_names=1
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_DATABASE: ride_db
+      MYSQL_USER: test
+      MYSQL_PASSWORD: test123
+    ports:
+      - "3307:3306"
+
+  db_redis:
+    image: redis
+    container_name: ride-redis-db
+    ports:
+      - "6378:6379"
+
+  server:
+    build: .
+    container_name: backend
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db_mysql
+      - db_redis

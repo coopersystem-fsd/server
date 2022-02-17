@@ -23,7 +23,7 @@ public class SimpleCORSFilter implements Filter {
   @VisibleForTesting
   static final ImmutableSet<String> ORIGINS = ImmutableSet.of(
     // fill in allowed origins
-      "https://allowed.origin"
+    "http://localhost:8080", "http://localhost:3000"
   );
 
   public void doFilter(ServletRequest req, ServletResponse res, FilterChain chain) throws IOException, ServletException {
@@ -32,10 +32,12 @@ public class SimpleCORSFilter implements Filter {
 
     //allow requests coming from the management console
     //(to be updated once the console will be deployed on a staging server)
-    String origin = request.getHeader(HttpHeaders.ORIGIN);
-    if (origin != null && ORIGINS.contains(origin)) {
-      response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, origin);
-    }
+//    String origin = request.getHeader(HttpHeaders.ORIGIN);
+//    if (origin != null && ORIGINS.contains(origin)) {
+//      response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, origin);
+//    }
+    response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, "*");
+
     response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "POST, PUT, GET, OPTIONS, DELETE, PATCH");
     response.setHeader(HttpHeaders.ACCESS_CONTROL_MAX_AGE, "3600");
     response.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_HEADERS, "x-requested-with, content-type, X-Auth-Token, Authorization");
